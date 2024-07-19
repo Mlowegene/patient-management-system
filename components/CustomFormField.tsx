@@ -72,7 +72,7 @@ import PhoneInput from 'react-phone-number-input';
     }
   }
 
-function CustomeFormField(props: CustomProps) {
+function CustomFormField(props: CustomProps) {
 
   const {control, fieldType, name, label} = props;
 
@@ -95,4 +95,4 @@ function CustomeFormField(props: CustomProps) {
   )
 }
 
-export default CustomeFormField
+export default CustomFormField

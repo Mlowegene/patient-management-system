@@ -5,11 +5,12 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
-import CustomeFormField from "../CustomFormField"
+import CustomFormField from "../CustomFormField"
 import SubmitButton from "../SubmitButton"
 import { useState } from "react"
 import { UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
+import { createUser } from "@/lib/actions/patient.actions"
 
 export enum FormFieldType {
     INPUT= 'input',
@@ -43,10 +44,10 @@ const PatientForm = () => {
 
     setIsLoading(true);
     try {
-        // const userData = { name,email,phone };
-        // const user = await createUser(userData);
+        const userData = { name,email,phone };
+        const user = await createUser(userData);
 
-        // if(user) router.push(`/patients/${user.$id}/register`)
+        if(user) router.push(`/patients/${user.$id}/register`)
         
     } catch (error) {
         console.log(error)
@@ -59,7 +60,7 @@ const PatientForm = () => {
             <h1 className="header">Hi there 👋</h1>
             <p className="text-dark-700">Schedule your first appointment</p>
         </section>
-        <CustomeFormField 
+        <CustomFormField 
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="name"
@@ -69,7 +70,7 @@ const PatientForm = () => {
             iconAlt="user"
          />
 
-        <CustomeFormField 
+        <CustomFormField 
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="email"
@@ -79,7 +80,7 @@ const PatientForm = () => {
             iconAlt="email"
          />
 
-<CustomeFormField 
+        <CustomFormField 
             fieldType={FormFieldType.PHONE_INPUT}
             control={form.control}
             name="phone"
