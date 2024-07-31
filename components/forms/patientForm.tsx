@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import CustomFormField from "../CustomFormField"
 import SubmitButton from "../SubmitButton"
@@ -43,8 +42,10 @@ const PatientForm = () => {
   async function onSubmit({name, email, phone}: z.infer<typeof UserFormValidation>) {
 
     setIsLoading(true);
+    console.log("mlowe error")
     try {
         const userData = { name,email,phone };
+        console.log("HII apa hii",userData);
         const user = await createUser(userData);
 
         if(user) router.push(`/patients/${user.$id}/register`)
@@ -65,7 +66,7 @@ const PatientForm = () => {
             control={form.control}
             name="name"
             label="Fullname"
-            placeholder="mlowe"
+            placeholder="your name"
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
          />
@@ -75,7 +76,7 @@ const PatientForm = () => {
             control={form.control}
             name="email"
             label="Email"
-            placeholder="mlowe@gmail.com"
+            placeholder="name@example.com"
             iconSrc="/assets/icons/email.svg"
             iconAlt="email"
          />
